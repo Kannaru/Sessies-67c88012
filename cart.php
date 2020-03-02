@@ -17,14 +17,20 @@
         ?>
         
         <form action="cart.php" method="post">
-    <input type="text" name="deinput">
-    <input type="submit" value="Verstuur" name="submit">
-</form>
+            <input type="text" name="deinput" /> 
+            <input type="submit" value="Verstuur" name="submit" />
+        </form>
 <?php
-if(isset($_POST["submit"])){
-    setcookie("gekozenkoek", $_POST["deinput"]);
-    echo ("Gekozen item: " . $_COOKIE["gekozenkoek"]);
+if(isset($_POST["submit"])) {
+    if ($_POST["deinput"] > 3 || $_POST["deinput"] < 1) {
+        echo "dit is geen geldig getal";
+        exit();
+        
+    }
+    $_SESSION["nummer"] = $_POST["deinput"];
+    echo ("gekozen item : " . $_SESSION["nummer"]);  
 }
+
 ?>
     </body>
 </html>
